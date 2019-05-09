@@ -1,7 +1,7 @@
 ﻿namespace Komorebi.Packets
 {
-    enum PacketType : short
+    public enum PacketType : short
     {
-
+        StatusUpdate
     }
 }

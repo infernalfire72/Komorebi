@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Managers\ConfigManager.cs" />
     <Compile Include="Packets\ISerializable.cs" />
+    <Compile Include="Packets\Packet.cs" />
     <Compile Include="Packets\PacketReader.cs" />
     <Compile Include="Packets\PacketType.cs" />
     <Compile Include="Packets\PacketWriter.cs" />
