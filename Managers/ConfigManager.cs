@@ -36,8 +36,8 @@ namespace Komorebi.Managers
                 if (ConfigLines[i].Length < 3) continue;
                 if (ConfigLines[i].StartsWith("[")) continue;
                 int SplitterPos = ConfigLines[i].IndexOf("=");
-                string Key = ConfigLines[i].Substring(0, SplitterPos);
-                string Value = ConfigLines[i].Substring(SplitterPos).Remove(0, 1);
+                string Key = ConfigLines[i].Substring(0, SplitterPos).Trim();
+                string Value = ConfigLines[i].Substring(SplitterPos).Remove(0, 1).Trim();
                 Fields.Add(Key, Value);
             }
 
