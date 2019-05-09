@@ -1,2 +1,6 @@
 # Komorebi - 木漏れ日
-Some kinda see sharp bancho
+
+A Third-Party Server for the popular rhythm game osu!
+
+#Libraries used
+-Colorful.Console
