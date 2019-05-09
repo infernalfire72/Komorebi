@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\LoginEvent.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
     <Compile Include="Packets\ISerializable.cs" />
     <Compile Include="Packets\Packet.cs" />
