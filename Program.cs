@@ -8,7 +8,7 @@ namespace Komorebi
         static void Main(string[] args)
         {
             ConfigManager.LoadConfig();
-            new HttpServer(5001);
+            new HttpServer(Config.ServerPort);
         }
     }
 }
