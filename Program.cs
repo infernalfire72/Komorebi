@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Komorebi.Server;
 
 namespace Komorebi
 {
@@ -10,6 +6,7 @@ namespace Komorebi
     {
         static void Main(string[] args)
         {
+            new HttpServer(5001);
         }
     }
 }
