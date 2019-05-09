@@ -66,6 +66,8 @@
   <ItemGroup>
     <Compile Include="Events\LoginEvent.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
+    <Compile Include="Objects\Global.cs" />
+    <Compile Include="Objects\Player.cs" />
     <Compile Include="Packets\ISerializable.cs" />
     <Compile Include="Packets\Packet.cs" />
     <Compile Include="Packets\PacketReader.cs" />
