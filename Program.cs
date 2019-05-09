@@ -1,4 +1,5 @@
-﻿using Komorebi.Server;
+﻿using Komorebi.Managers;
+using Komorebi.Server;
 
 namespace Komorebi
 {
@@ -6,6 +7,7 @@ namespace Komorebi
     {
         static void Main(string[] args)
         {
+            ConfigManager.LoadConfig();
             new HttpServer(5001);
         }
     }
