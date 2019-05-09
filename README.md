@@ -2,5 +2,5 @@
 
 A Third-Party Server for the popular rhythm game osu!
 
-#Libraries used
+# Libraries used
 -Colorful.Console
