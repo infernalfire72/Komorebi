@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\LoginEvent.cs" />
+    <Compile Include="Handler\Main.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
     <Compile Include="Objects\Global.cs" />
     <Compile Include="Objects\Player.cs" />
