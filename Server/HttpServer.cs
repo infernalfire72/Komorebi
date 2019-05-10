@@ -60,7 +60,7 @@ namespace Komorebi.Server
                 Player p = Player.GetPlayer(Request.Headers["osu-token"]);
                 if(p == null)
                 {
-                    Packet InvalidToken = new Packet(PacketType.Server_LoginResponse, new Structures.LoginResponse(-5));
+                    Packet InvalidToken = new Packet(PacketType.Server_LoginResponse, new Structures.Server.LoginResponse(-5));
                     Response.OutputStream.Write(InvalidToken.Serialize(), 0, 11); // 7+4 = 11 lol
                     Response.StatusCode = 403;
                 }
