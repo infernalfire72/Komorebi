@@ -31,7 +31,7 @@ namespace Komorebi.Events
             ctx.Response.OutputStream.Serialize(LoginResponse);
             List<ISerializable> Packets = new List<ISerializable>();
             Packets.Add(new Packet(PacketType.Server_HandleStatsUpdate, new Structures.UserStatus(p)));
-
+            Packets.Add(new Packet(PacketType.Server_UserPresence, new Structures.UserPresence(p))));
             ctx.Response.OutputStream.Serialize(Packets);
         }
     }

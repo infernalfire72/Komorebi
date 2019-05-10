@@ -10,6 +10,8 @@ namespace Komorebi.Objects
         public string SafeUsername;
         public readonly string Token;
 
+        public int Privileges;
+
         // Status
         public ActionType Action;
         public string ActionText, ActionMD5;
@@ -20,6 +22,8 @@ namespace Komorebi.Objects
         public long RankedScore, TotalScore = 0;
         public float Accuracy = 4.2f;
         public int Playcount, Performance, GameRank = 0;
+
+        public string Country;
 
         public Player() { }
         public Player(int _UserID)

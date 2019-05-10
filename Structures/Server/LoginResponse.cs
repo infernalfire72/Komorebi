@@ -1,6 +1,6 @@
 ﻿using Komorebi.Packets;
 
-namespace Komorebi.Structures
+namespace Komorebi.Structures.Server
 {
     public class LoginResponse : ISerializable
     {
