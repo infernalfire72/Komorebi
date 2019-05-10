@@ -1,4 +1,5 @@
 ﻿using Komorebi.Structures.Enumerations;
+using Shared;
 using System;
 
 namespace Komorebi.Objects
@@ -7,7 +8,7 @@ namespace Komorebi.Objects
     {
         public readonly int UserId;
         public string Username;
-        public string SafeUsername;
+        public string SafeUsername => Username.Replace(" ", "_").ToLower();
         public readonly string Token;
 
         public int Privileges;
@@ -29,6 +30,7 @@ namespace Komorebi.Objects
         public Player(int _UserID)
         {
             UserId = _UserID;
+            Username = (string)Database.RunQueryOne($"SELECT username FROM users WHERE id = {UserId};");
             Token = new Guid().ToString();
         }
 

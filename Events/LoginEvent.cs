@@ -32,6 +32,26 @@ namespace Komorebi.Events
             List<ISerializable> Packets = new List<ISerializable>();
             Packets.Add(new Packet(PacketType.Server_HandleStatsUpdate, new Structures.UserStatus(p)));
             Packets.Add(new Packet(PacketType.Server_UserPresence, new Structures.Server.UserPresence(p)));
+
+            if (Global.Players.Count >= 100)
+            {
+                List<int> Bundle = new List<int>();
+                foreach (KeyValuePair<string, Player> x in Global.Players)
+                {
+                    if (x.Value == null) continue;
+                    Bundle.Add(x.Value.UserId);
+                }
+                Packets.Add(new Packet(PacketType.Server_UserPresenceBundle, new Structures.Server.PresenceBundle(Bundle)));
+            } else
+            {
+                foreach (KeyValuePair<string, Player> x in Global.Players)
+                {
+                    if (x.Value == null) continue;
+                    Packets.Add(new Packet(PacketType.Server_HandleStatsUpdate, new Structures.UserStatus(x.Value)));
+                    Packets.Add(new Packet(PacketType.Server_UserPresence, new Structures.Server.UserPresence(x.Value)));
+                }
+            }
+
             ctx.Response.OutputStream.Serialize(Packets);
         }
     }
