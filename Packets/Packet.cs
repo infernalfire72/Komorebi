@@ -11,6 +11,12 @@
             Data = data;
         }
 
+        public Packet(PacketType t, ISerializable Struct)
+        {
+            this.Type = t;
+            this.Data = Struct.Serialize();
+        }
+
         public void ReadFromStream(PacketReader r)
         {
             Type = (PacketType)r.ReadInt16();

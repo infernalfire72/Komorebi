@@ -1,4 +1,5 @@
 ﻿using Komorebi.Objects;
+using Komorebi.Packets;
 using System.IO;
 using System.Net;
 
@@ -16,12 +17,14 @@ namespace Komorebi.Events
                 Password = r.ReadLine();
             }
 
+            int UserId = 0;
+
             // Check Login right here
 
             //
 
             Player p = new Player();
-
+            Packet LoginResponse = new Packet(PacketType.Server_LoginResponse, new Structures.LoginResponse(UserId));
             //ctx.Response.OutputStream.Write();
         }
     }
