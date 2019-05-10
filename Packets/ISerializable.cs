@@ -44,7 +44,7 @@ namespace Komorebi.Packets
             s.Write(PacketData, 0, PacketData.Length);
         }
 
-        public static void Serialize(this Stream s, IEnumerable<Packet> list)
+        public static void Serialize(this Stream s, IEnumerable<ISerializable> list)
         {
             byte[] PacketData = list.Serialize();
             s.Write(PacketData, 0, PacketData.Length);

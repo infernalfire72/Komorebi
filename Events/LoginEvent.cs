@@ -32,7 +32,7 @@ namespace Komorebi.Events
             List<ISerializable> Packets = new List<ISerializable>();
             Packets.Add(new Packet(PacketType.Server_HandleStatsUpdate, new Structures.UserStatus(p)));
 
-            Packets.Serialize();
+            ctx.Response.OutputStream.Serialize(Packets);
         }
     }
 }
