@@ -80,7 +80,8 @@
     <Compile Include="Structures\Enumerations\ActionType.cs" />
     <Compile Include="Structures\Global\IrcMessage.cs" />
     <Compile Include="Structures\Server\LoginResponse.cs" />
-    <Compile Include="Structures\Global\UserPresence.cs" />
+    <Compile Include="Structures\Global\UserStatus.cs" />
+    <Compile Include="Structures\Server\UserPresence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
