@@ -27,11 +27,11 @@ namespace Komorebi.Events
             Player p = new Player(UserId);
             Global.Players.Add(p.Token, p);
             ctx.Response.AddHeader("cho-token", p.Token);
-            Packet LoginResponse = new Packet(PacketType.Server_LoginResponse, new Structures.LoginResponse(UserId));
+            Packet LoginResponse = new Packet(PacketType.Server_LoginResponse, new Structures.Server.LoginResponse(UserId));
             ctx.Response.OutputStream.Serialize(LoginResponse);
             List<ISerializable> Packets = new List<ISerializable>();
             Packets.Add(new Packet(PacketType.Server_HandleStatsUpdate, new Structures.UserStatus(p)));
-            Packets.Add(new Packet(PacketType.Server_UserPresence, new Structures.UserPresence(p))));
+            Packets.Add(new Packet(PacketType.Server_UserPresence, new Structures.Server.UserPresence(p)));
             ctx.Response.OutputStream.Serialize(Packets);
         }
     }
