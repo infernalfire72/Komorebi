@@ -41,7 +41,7 @@ namespace Komorebi.Managers
                 Fields.Add(Key, Value);
             }
 
-
+            Console.WriteLineFormatted($"Successfully parsed Config.", Color.LimeGreen);
         }
 
         private static dynamic GetValue<dynamic>(string Keyname, dynamic Default)

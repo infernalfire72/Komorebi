@@ -24,7 +24,7 @@ namespace Komorebi.Server
                 listener.Prefixes.Add($"http://*:{port}/");
                 listener.Start();
 
-                Console.WriteLineFormatted($"Now Listening on *:{port}", Color.Green);
+                Console.WriteLineFormatted($"Now Listening on *:{port}", Color.LimeGreen);
 
                 new Thread(() =>
                 {
