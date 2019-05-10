@@ -86,6 +86,7 @@
     <Compile Include="Events\LoginEvent.cs" />
     <Compile Include="Handler\Main.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
+    <Compile Include="Objects\Channel.cs" />
     <Compile Include="Objects\Global.cs" />
     <Compile Include="Objects\Player.cs" />
     <Compile Include="Packets\ISerializable.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Structures\Server\LoginResponse.cs" />
     <Compile Include="Structures\Global\UserStatus.cs" />
     <Compile Include="Structures\Server\PresenceBundle.cs" />
+    <Compile Include="Structures\Server\ProtocolNegtiation.cs" />
     <Compile Include="Structures\Server\UserPresence.cs" />
   </ItemGroup>
   <ItemGroup>
