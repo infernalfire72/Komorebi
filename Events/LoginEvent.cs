@@ -1,5 +1,6 @@
 ﻿using Komorebi.Objects;
 using Komorebi.Packets;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 
@@ -28,6 +29,10 @@ namespace Komorebi.Events
             ctx.Response.AddHeader("cho-token", p.Token);
             Packet LoginResponse = new Packet(PacketType.Server_LoginResponse, new Structures.LoginResponse(UserId));
             ctx.Response.OutputStream.Serialize(LoginResponse);
+            List<ISerializable> Packets = new List<ISerializable>();
+            Packets.Add(new Packet(PacketType.Server_HandleStatsUpdate, new Structures.UserStatus(p)));
+
+            Packets.Serialize();
         }
     }
 }

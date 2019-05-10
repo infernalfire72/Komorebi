@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Komorebi.Structures.Enumerations;
+using System;
 
 namespace Komorebi.Objects
 {
@@ -9,6 +10,16 @@ namespace Komorebi.Objects
         public string SafeUsername;
         public readonly string Token;
 
+        // Status
+        public ActionType Action;
+        public string ActionText, ActionMD5;
+        public uint Mods, Beatmap = 0;
+        // Status/Stats
+        public byte Mode = 0;
+        // Stats
+        public long RankedScore, TotalScore = 0;
+        public float Accuracy = 4.2f;
+        public int Playcount, Performance, GameRank = 0;
 
         public Player() { }
         public Player(int _UserID)
