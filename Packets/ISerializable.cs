@@ -26,5 +26,11 @@ namespace Komorebi.Packets
                 return stream.ToArray();
             }
         }
+
+        public static void Serialize(this Stream s, Packet p)
+        {
+            byte[] PacketData = p.Serialize();
+            s.Write(PacketData, 0, PacketData.Length);
+        }
     }
 }

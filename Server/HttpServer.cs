@@ -1,4 +1,6 @@
-﻿using Komorebi.Packets;
+﻿using Komorebi.Events;
+using Komorebi.Objects;
+using Komorebi.Packets;
 using System;
 using System.Drawing;
 using System.IO;
@@ -51,11 +53,17 @@ namespace Komorebi.Server
 
             if (Request.Headers["osu-token"] == null || Request.Headers["osu-token"] == "no")
             {
-
+                LoginEvent.Handle(ref ctx);
             }
             else
             {
-                
+                Player p = Player.GetPlayer(Request.Headers["osu-token"]);
+                if(p == null)
+                {
+                    Packet InvalidToken = new Packet(PacketType.Server_LoginResponse, new Structures.LoginResponse(-5));
+                    Response.OutputStream.Write(InvalidToken.Serialize(), 0, 11); // 7+4 = 11 lol
+                    Response.StatusCode = 403;
+                }
 
                 using (MemoryStream ms = new MemoryStream())
                 using (BinaryReader r = new BinaryReader(ms))
