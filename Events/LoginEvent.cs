@@ -35,7 +35,7 @@ namespace Komorebi.Events
             List<ISerializable> Packets = new List<ISerializable>();
             Packets.Add(new Packet(PacketType.Server_HandleStatsUpdate, new Structures.UserStatus(p)));
             Packets.Add(new Packet(PacketType.Server_UserPresence, new Structures.Server.UserPresence(p)));
-            Packets.Add(new Packet(PacketType.Server_LoginPermissions));
+            Packets.Add(new Packet(PacketType.Server_LoginPermissions, new Structures.Server.LoginPermissions(p.Privileges)));
             Packets.Add(new Packet(PacketType.Server_ChannelListingComplete));
 
             List<Channel> Channels = ChannelList.ReadChannels;
