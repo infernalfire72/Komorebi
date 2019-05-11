@@ -20,8 +20,8 @@ namespace Komorebi.Managers
 
             Config.ServerPort = GetValue("ServerPort", 5001);
             Database.ConnectionString = GetValue("ConnectionString", "none");
-            Config.LoginNotification = (string)Database.RunQueryOne("SELECT value_string FROM bancho_settings WHERE name = login_notification LIMIT 1;");
-            Config.MainMenuIcon = (string)Database.RunQueryOne("SELECT value_string FROM bancho_settings WHERE name = menu_icon LIMIT 1");
+            Config.LoginNotification = (string)Database.RunQueryOne("SELECT value_string FROM bancho_settings WHERE name = 'login_notification' LIMIT 1;");
+            Config.MainMenuIcon = (string)Database.RunQueryOne("SELECT value_string FROM bancho_settings WHERE name = 'menu_icon' LIMIT 1");
         }
 
         internal static void ParseConfig()
