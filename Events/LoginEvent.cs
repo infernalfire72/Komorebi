@@ -45,24 +45,22 @@ namespace Komorebi.Events
                 Packets.Add(new Packet(PacketType.Server_ChannelAvailable, Channels[i]));
             }
 
+            List<Player> Players = Global.Players.FindAll(x => x != null);
             if (Global.Players.Count >= 100)
             {
                 List<int> Bundle = new List<int>();
-                foreach (KeyValuePair<string, Player> x in Global.Players)
-                {
-                    if (x.Value == null) continue;
-                    Bundle.Add(x.Value.UserId);
-                }
+                for (int i = 0; i < Players.Count; i++) Bundle.Add(Players[i].UserId);
                 Packets.Add(new Packet(PacketType.Server_UserPresenceBundle, new Structures.Server.PresenceBundle(Bundle)));
             } else
             {
-                foreach (KeyValuePair<string, Player> x in Global.Players)
+                for (int i = 0; i < Players.Count; i++)
                 {
-                    if (x.Value == null) continue;
-                    Packets.Add(new Packet(PacketType.Server_HandleStatsUpdate, new Structures.UserStatus(x.Value)));
-                    Packets.Add(new Packet(PacketType.Server_UserPresence, new Structures.Server.UserPresence(x.Value)));
+                    Packets.Add(new Packet(PacketType.Server_HandleStatsUpdate, new Structures.UserStatus(Players[i])));
+                    Packets.Add(new Packet(PacketType.Server_UserPresence, new Structures.Server.UserPresence(Players[i])));
                 }
             }
+
+            
 
             ctx.Response.OutputStream.Serialize(Packets);
         }
