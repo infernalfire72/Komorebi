@@ -52,19 +52,22 @@ namespace Komorebi.Objects
         {
             using (MySqlDataReader r = Database.RunQuery($"SELECT * FROM users_stats WHERE id = {UserId}"))
             {
-                if (SetCountry)
+                if (r.Read())
                 {
-                    Country = r.GetString("country");
-                }
+                    if (SetCountry)
+                    {
+                        Country = r.GetString("country");
+                    }
 
-                if (this.Mode > 3) this.Mode = 0;
-                DatabaseMode Mode = (DatabaseMode)this.Mode;
-                RankedScore = r.GetInt64($"ranked_score_{Mode}");
-                TotalScore = r.GetInt64($"total_score_{Mode}");
-                Accuracy = (r.GetFloat($"avg_accuracy_{Mode}") / 100f);
-                Playcount = r.GetInt32($"playcount_{Mode}");
-                GameRank = (int)UserUtils.GetGameRank(UserId, this.Mode);
-                Performance = r.GetInt32($"pp_{Mode}");
+                    if (this.Mode > 3) this.Mode = 0;
+                    DatabaseMode Mode = (DatabaseMode)this.Mode;
+                    RankedScore = r.GetInt64($"ranked_score_{Mode}");
+                    TotalScore = r.GetInt64($"total_score_{Mode}");
+                    Accuracy = (r.GetFloat($"avg_accuracy_{Mode}") / 100f);
+                    Playcount = r.GetInt32($"playcount_{Mode}");
+                    GameRank = (int)UserUtils.GetGameRank(UserId, this.Mode);
+                    Performance = r.GetInt32($"pp_{Mode}");
+                }
             }
         }
 
