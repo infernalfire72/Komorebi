@@ -3,6 +3,8 @@ using Shared;
 using System;
 using Komorebi.Packets;
 using System.IO;
+using MySql.Data.MySqlClient;
+using Shared.Utils;
 
 namespace Komorebi.Objects
 {
@@ -38,10 +40,32 @@ namespace Komorebi.Objects
         public Player(int _UserID)
         {
             UserId = _UserID;
+
             Username = (string)Database.RunQueryOne($"SELECT username FROM users WHERE id = {UserId};");
+
             Token = new Guid().ToString();
             loggedIn = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             ms = new MemoryStream();
+        }
+
+        public void SetData(bool SetCountry = false)
+        {
+            using (MySqlDataReader r = Database.RunQuery($"SELECT * FROM users_stats WHERE id = {UserId}"))
+            {
+                if (SetCountry)
+                {
+                    Country = r.GetString("country");
+                }
+
+                if (this.Mode > 3) this.Mode = 0;
+                DatabaseMode Mode = (DatabaseMode)this.Mode;
+                RankedScore = r.GetInt64($"ranked_score_{Mode}");
+                TotalScore = r.GetInt64($"total_score_{Mode}");
+                Accuracy = (r.GetFloat($"avg_accuracy_{Mode}") / 100f);
+                Playcount = r.GetInt32($"playcount_{Mode}");
+                GameRank = (int)UserUtils.GetGameRank(UserId, this.Mode);
+                Performance = r.GetInt32($"pp_{Mode}");
+            }
         }
 
         public static Player GetPlayer(string T)

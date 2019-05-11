@@ -29,7 +29,7 @@ namespace Komorebi.Structures.Server
 
         private static byte getCountryId(string Country)
         {
-            if (Country.Length != 2)
+            if (Country == null || Country.Length != 2)
             {
                 return 0;
             }

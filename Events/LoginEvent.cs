@@ -30,6 +30,7 @@ namespace Komorebi.Events
             }
 
             Player p = new Player(UserId);
+            p.SetData(true);
             Global.Players.Add(p.Token, p);
             ctx.Response.AddHeader("cho-token", p.Token);
             Packet LoginResponse = new Packet(PacketType.Server_LoginResponse, new Structures.Server.LoginResponse(UserId));
