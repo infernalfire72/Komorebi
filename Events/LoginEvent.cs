@@ -1,6 +1,7 @@
 ﻿using Komorebi.Extensions;
 using Komorebi.Objects;
 using Komorebi.Packets;
+using Shared.Utils;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -19,11 +20,14 @@ namespace Komorebi.Events
                 Password = r.ReadLine();
             }
 
-            int UserId = 0;
+            int UserId = UserUtils.GetUserID(Username);
 
-            // Check Login right here
-
-            //
+            if(!UserUtils.CheckPassword(UserId, Password))
+            {
+                Packet InvalidToken = new Packet(PacketType.Server_LoginResponse, new Structures.Server.LoginResponse(-1));
+                ctx.Response.OutputStream.Serialize(InvalidToken);
+                return;
+            }
 
             Player p = new Player(UserId);
             Global.Players.Add(p.Token, p);

@@ -16,8 +16,8 @@ namespace Komorebi.Objects
         public int Privileges;
 
         // Status
-        public ActionType Action;
-        public string ActionText, ActionMD5;
+        public ActionType Action = ActionType.Idle;
+        public string ActionText, ActionMD5 = "";
         public uint Mods, Beatmap = 0;
         // Status/Stats
         public byte Mode = 0;
