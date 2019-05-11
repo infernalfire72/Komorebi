@@ -96,11 +96,13 @@
     <Compile Include="Server\HttpServer.cs" />
     <Compile Include="Structures\Enumerations\ActionType.cs" />
     <Compile Include="Structures\Global\IrcMessage.cs" />
+    <Compile Include="Structures\Server\Announce.cs" />
     <Compile Include="Structures\Server\LoginPermissions.cs" />
     <Compile Include="Structures\Server\LoginResponse.cs" />
     <Compile Include="Structures\Global\UserStatus.cs" />
     <Compile Include="Structures\Server\PresenceBundle.cs" />
     <Compile Include="Structures\Server\ProtocolNegtiation.cs" />
+    <Compile Include="Structures\Server\TitleUpdate.cs" />
     <Compile Include="Structures\Server\UserPresence.cs" />
   </ItemGroup>
   <ItemGroup>

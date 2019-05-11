@@ -36,6 +36,8 @@ namespace Komorebi.Events
             Packets.Add(new Packet(PacketType.Server_HandleStatsUpdate, new Structures.UserStatus(p)));
             Packets.Add(new Packet(PacketType.Server_UserPresence, new Structures.Server.UserPresence(p)));
             Packets.Add(new Packet(PacketType.Server_LoginPermissions, new Structures.Server.LoginPermissions(p.Privileges)));
+            if (Config.LoginNotification != null) Packets.Add(new Packet(PacketType.Server_Announce, new Structures.Server.Announce(Config.LoginNotification)));
+            if (Config.MainMenuIcon != null) Packets.Add(new Packet(PacketType.Server_TitleUpdate, new Structures.Server.TitleUpdate(Config.MainMenuIcon)));
             Packets.Add(new Packet(PacketType.Server_ChannelListingComplete));
 
             List<Channel> Channels = ChannelList.ReadChannels;
