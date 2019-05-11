@@ -26,6 +26,10 @@ namespace Komorebi.Objects
         public float Accuracy = 4.2f;
         public int Playcount, Performance, GameRank = 0;
 
+        public long loggedIn;
+        public long pingTime = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        public long onlineTime => (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - loggedIn;
+
         public string Country;
 
         private MemoryStream ms;
@@ -36,6 +40,7 @@ namespace Komorebi.Objects
             UserId = _UserID;
             Username = (string)Database.RunQueryOne($"SELECT username FROM users WHERE id = {UserId};");
             Token = new Guid().ToString();
+            loggedIn = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             ms = new MemoryStream();
         }
 
