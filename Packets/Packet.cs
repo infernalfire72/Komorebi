@@ -37,7 +37,7 @@
         {
             w.Write((short)Type);
             w.Write((byte)0);
-            w.Write(Data.Length);
+            w.Write(Data?.Length ?? 0);
             w.Write(Data);
         }
     }

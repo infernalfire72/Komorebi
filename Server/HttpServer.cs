@@ -1,4 +1,5 @@
 ﻿using Komorebi.Events;
+using Komorebi.Handler;
 using Komorebi.Objects;
 using Komorebi.Packets;
 using System;
@@ -80,6 +81,7 @@ namespace Komorebi.Server
                         ms.Position += 1;
                         int Length = r.ReadInt32();
                         byte[] PacketData = r.ReadBytes(Length);
+                        Main.Handle(p, new Packet(PacketID, PacketData));
                     }
                 }
 
