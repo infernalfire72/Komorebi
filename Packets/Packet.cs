@@ -5,6 +5,12 @@
         public PacketType Type;
         public byte[] Data;
 
+        public Packet(PacketType t)
+        {
+            this.Type = t;
+            Data = new byte[0];
+        }
+
         public Packet(PacketType t, byte[] data)
         {
             Type = t;

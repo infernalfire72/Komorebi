@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Collections.Generic;
+using Shared;
 
 namespace Komorebi.Managers
 {
@@ -18,6 +19,7 @@ namespace Komorebi.Managers
             ParseConfig();
 
             Config.ServerPort = GetValue("ServerPort", 5001);
+            Database.ConnectionString = GetValue("ConnectionString", "none");
         }
 
         internal static void ParseConfig()

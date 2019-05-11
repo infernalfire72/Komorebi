@@ -1,4 +1,5 @@
-﻿using Komorebi.Objects;
+﻿using Komorebi.Extensions;
+using Komorebi.Objects;
 using Komorebi.Packets;
 using System.Collections.Generic;
 using System.IO;
@@ -34,6 +35,15 @@ namespace Komorebi.Events
             List<ISerializable> Packets = new List<ISerializable>();
             Packets.Add(new Packet(PacketType.Server_HandleStatsUpdate, new Structures.UserStatus(p)));
             Packets.Add(new Packet(PacketType.Server_UserPresence, new Structures.Server.UserPresence(p)));
+            Packets.Add(new Packet(PacketType.Server_ChannelListingComplete));
+
+            List<Channel> Channels = ChannelList.ReadChannels;
+            if (p.Privileges.Has(32)) Channels.Concat(ChannelList.AdminChannels);
+
+            for(int i = 0; i < Channels.Count; i++)
+            {
+                Packets.Add(new Packet(PacketType.Server_ChannelAvailable, Channels[i]));
+            }
 
             if (Global.Players.Count >= 100)
             {

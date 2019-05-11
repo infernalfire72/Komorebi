@@ -1,6 +1,8 @@
 ﻿using Komorebi.Structures.Enumerations;
 using Shared;
 using System;
+using Komorebi.Packets;
+using System.IO;
 
 namespace Komorebi.Objects
 {
@@ -26,12 +28,15 @@ namespace Komorebi.Objects
 
         public string Country;
 
+        private MemoryStream ms;
+
         public Player() { }
         public Player(int _UserID)
         {
             UserId = _UserID;
             Username = (string)Database.RunQueryOne($"SELECT username FROM users WHERE id = {UserId};");
             Token = new Guid().ToString();
+            ms = new MemoryStream();
         }
 
         public static Player GetPlayer(string T)
@@ -39,5 +44,12 @@ namespace Komorebi.Objects
             Global.Players.TryGetValue(T, out Player x);
             return x;
         }
+
+        public void Write(Packet Packet)
+        {
+            ms.Serialize(Packet);
+        }
+
+        public Stream PlayerStream => ms;
     }
 }

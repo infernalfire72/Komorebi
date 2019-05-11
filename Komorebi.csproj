@@ -84,6 +84,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\LoginEvent.cs" />
+    <Compile Include="Extensions\dictionary.cs" />
+    <Compile Include="Extensions\int.cs" />
+    <Compile Include="Extensions\list.cs" />
     <Compile Include="Handler\Main.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
     <Compile Include="Objects\Channel.cs" />

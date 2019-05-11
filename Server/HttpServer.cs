@@ -61,7 +61,7 @@ namespace Komorebi.Server
                 if(p == null)
                 {
                     Packet InvalidToken = new Packet(PacketType.Server_LoginResponse, new Structures.Server.LoginResponse(-5));
-                    Response.OutputStream.Write(InvalidToken.Serialize(), 0, 11); // 7+4 = 11 lol
+                    Response.OutputStream.Serialize(InvalidToken); // 7+4 = 11 lol
                     Response.StatusCode = 403;
                 }
 
@@ -82,6 +82,8 @@ namespace Komorebi.Server
                         byte[] PacketData = r.ReadBytes(Length);
                     }
                 }
+
+                p.PlayerStream.CopyTo(Response.OutputStream);
             }
 
             Response.OutputStream.Close();

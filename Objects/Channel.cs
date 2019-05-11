@@ -1,4 +1,6 @@
-﻿using Komorebi.Packets;
+﻿using Komorebi.Extensions;
+using Komorebi.Packets;
+using Komorebi.Structures;
 using MySql.Data.MySqlClient;
 using Shared;
 using System.Collections.Generic;
@@ -24,6 +26,30 @@ namespace Komorebi.Objects
             this.Topic = Topic;
         }
 
+        public bool Join(Player p)
+        {
+            if (!Read && !p.Privileges.Has(32)) return false;
+            joinedPlayers.Add(p);
+            return true;
+        }
+
+        public void Leave(Player p)
+        {
+            joinedPlayers.Remove(p);
+        }
+
+        public void Broadcast(IrcMessage msg, Player Sender)
+        {
+            if (!Write && !Sender.Privileges.Has(32)) return; // Readonly for Members under Admin
+            Packet MessagePacket = new Packet(PacketType.Server_IrcMessage, msg);
+            for (int i = 0; i < joinedPlayers.Count; i++)
+            {
+                if (joinedPlayers[i] == null) continue;
+                if (joinedPlayers[i] == Sender) continue;
+                joinedPlayers[i].Write(MessagePacket);
+            }
+        }
+
         public void ReadFromStream(PacketReader r)
         {
             Name = r.ReadString();
@@ -39,7 +65,7 @@ namespace Komorebi.Objects
         }
     }
 
-    public class ChannelList
+    public static class ChannelList
     {
         private static bool a = false;
 
@@ -61,5 +87,8 @@ namespace Komorebi.Objects
             }
             a = true;
         }
+
+        public static List<Channel> ReadChannels => Global.Channels.FindAll(x => x.Read);
+        public static List<Channel> AdminChannels => Global.Channels.FindAll(x => !x.Read);
     }
 }
